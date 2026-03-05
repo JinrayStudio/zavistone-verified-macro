@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-center p-24">
@@ -15,9 +17,9 @@ export default function Home() {
                         <p className="text-neutral-500 max-w-md mx-auto text-sm">
                             Access to ZAVISTONE verified macro reports is strictly controlled. Only approved Meta (Instagram/Threads) followers are granted access.
                         </p>
-                        <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-md transition-colors w-full mt-4">
+                        <Link href="/api/auth/callback?code=mock_challenge" className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-md transition-colors w-full mt-4 block text-center">
                             Login with Meta
-                        </button>
+                        </Link>
                         <div className="text-xs text-neutral-600 mt-6 pt-4 border-t border-neutral-800">
                             Legal Disclaimer: This information is provided for informational purposes only and does not constitute financial advice.
                         </div>
