@@ -5,19 +5,16 @@ import { verifyToken } from '@/app/lib/auth';
 // All report endpoints require valid token.
 // Expired token → access denied (redirects to home)
 
-import { Ratelimit } from '@upstash/ratelimit';
-import { Redis } from '@upstash/redis';
-
 // Initialize Redis and Ratelimit only if connected to production DB
 // Disabled for Vercel Hobby tier / Demo mode to prevent Edge Runtime errors
-const ratelimit = null;
+// const ratelimit = null;
 
 export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
 
     // 1. Security Safeguard: Prevent Scraping (Basic User-Agent Check & Rate Limiting)
     if (pathname.startsWith('/api/') || pathname.startsWith('/dashboard')) {
-        const ip = req.ip ?? '127.0.0.1';
+        // const ip = req.ip ?? '127.0.0.1';
 
         // Basic Scraper & Bot detection via Headers
         const userAgent = req.headers.get('user-agent') || '';
@@ -25,13 +22,6 @@ export async function middleware(req: NextRequest) {
             return NextResponse.json({ error: 'Access Denied: Automated scraping prohibited.' }, { status: 403 });
         }
 
-        // Redis Rate Limiting
-        if (ratelimit) {
-            const { success, limit, reset, remaining } = await ratelimit.limit(ip);
-            if (!success) {
-                return NextResponse.json({ error: 'Too Many Requests' }, { status: 429 });
-            }
-        }
     }
 
     // 2. Token Verification Middleware for Dashboard
