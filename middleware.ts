@@ -9,17 +9,8 @@ import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 
 // Initialize Redis and Ratelimit only if connected to production DB
-const redis = (process.env.UPSTASH_REDIS_REST_URL && !process.env.UPSTASH_REDIS_REST_URL.includes('mock'))
-    ? new Redis({
-        url: process.env.UPSTASH_REDIS_REST_URL,
-        token: process.env.UPSTASH_REDIS_REST_TOKEN,
-    })
-    : null;
-
-const ratelimit = redis ? new Ratelimit({
-    redis,
-    limiter: Ratelimit.slidingWindow(parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '10'), '1 m'),
-}) : null;
+// Disabled for Vercel Hobby tier / Demo mode to prevent Edge Runtime errors
+const ratelimit = null;
 
 export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
