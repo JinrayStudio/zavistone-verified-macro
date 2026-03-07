@@ -23,10 +23,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             <AlertTriangle size={18} />
                             <span>Red Team Audit Logs</span>
                         </a>
-                        <a href="/dashboard/pro" className="flex items-center space-x-3 text-amber-500 bg-amber-950/20 hover:text-amber-400 hover:bg-amber-950/40 border border-amber-900/30 p-3 rounded-lg transition-all text-sm font-bold shadow-sm">
-                            <ShieldCheck size={18} />
-                            <span>Access Control (Pro)</span>
-                        </a>
                     </nav>
                 </div>
                 <div className="p-4 border-t border-neutral-800 flex flex-col gap-4">
@@ -113,10 +109,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <a href="/dashboard/audit" className="flex flex-col items-center p-2 text-neutral-400 hover:text-rose-400 transition-colors">
                     <AlertTriangle size={20} className="mb-1" />
                     <span className="text-[10px] font-medium">Audit</span>
-                </a>
-                <a href="/dashboard/pro" className="flex flex-col items-center p-2 text-amber-500 hover:text-amber-400 transition-colors">
-                    <ShieldCheck size={20} className="mb-1" />
-                    <span className="text-[10px] font-medium shadow-sm">Pro Access</span>
                 </a>
             </nav>
         </div>
