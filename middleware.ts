@@ -12,37 +12,17 @@ import { verifyToken } from '@/app/lib/auth';
 export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
 
-    // 1. Security Safeguard: Prevent Scraping (Basic User-Agent Check & Rate Limiting)
+    // 1. Security Safeguard: Prevent Scraping (Basic User-Agent Check)
     if (pathname.startsWith('/api/') || pathname.startsWith('/dashboard')) {
-        // const ip = req.ip ?? '127.0.0.1';
-
-        // Basic Scraper & Bot detection via Headers
         const userAgent = req.headers.get('user-agent') || '';
         if (userAgent.toLowerCase().includes('python') || userAgent.toLowerCase().includes('bot') || userAgent.toLowerCase().includes('scraper')) {
             return NextResponse.json({ error: 'Access Denied: Automated scraping prohibited.' }, { status: 403 });
         }
-
-    }
-
-    // 2. Token Verification Middleware for Dashboard
-    if (pathname.startsWith('/dashboard')) {
-        const token = req.cookies.get('jwt_auth_token')?.value;
-
-        if (!token) {
-            return NextResponse.redirect(new URL('/', req.url));
-        }
-
-        const payload = await verifyToken(token);
-        if (!payload?.isFollower) {
-            return NextResponse.redirect(new URL('/', req.url));
-        }
-
-        return NextResponse.next();
     }
 
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/dashboard/:path*'],
+    matcher: ['/:path*'],
 };

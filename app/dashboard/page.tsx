@@ -2,6 +2,9 @@ import React from 'react';
 import { supabaseAdmin } from '@/app/lib/supabase';
 import { CheckCircle2, TrendingUp, TrendingDown, Target, Zap, Activity, AlertTriangle, ShieldAlert, Briefcase, Landmark, Box, Bitcoin, Shield, Globe, UserPlus, Instagram, Youtube, Twitter } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function DashboardPage() {
     let todaysReport = null;
     let status = "Generating...";

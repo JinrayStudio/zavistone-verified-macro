@@ -2,6 +2,9 @@ import React from 'react';
 import { ShieldAlert, BookX } from 'lucide-react';
 import { supabaseAdmin } from '@/app/lib/supabase';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function AuditLogsPage() {
 
     let failedLogs: any[] = [];
