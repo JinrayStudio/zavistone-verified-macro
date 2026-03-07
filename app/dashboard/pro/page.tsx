@@ -3,19 +3,19 @@ import { ShieldCheck, Key, BellRing, Activity, Lock, Fingerprint, Database, Term
 
 export default function ProAccessPage() {
     return (
-        <div className="p-8 max-w-[1400px] mx-auto mb-20 animate-in fade-in duration-700">
+        <div className="p-4 md:p-8 max-w-[1400px] mx-auto mb-24 md:mb-20 animate-in fade-in duration-700">
             {/* Header */}
-            <header className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-neutral-800">
+            <header className="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-10 pb-6 border-b border-neutral-800">
                 <div>
                     <div className="text-amber-500 bg-amber-950/40 inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-wider mb-4 border border-amber-900/50 shadow-sm">
                         <Lock size={12} />
                         INSTITUTIONAL HUB (VIP PRO ACTIVE)
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-2">Private Institutional Portal</h1>
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-2">Private Institutional Portal</h1>
                     <p className="text-neutral-500 uppercase text-xs tracking-[0.2em]">Blackstone-Tier Security & Institutional Data Hub</p>
                 </div>
-                <div className="mt-6 md:mt-0 text-right">
-                    <div className="flex flex-col items-end">
+                <div className="mt-6 md:mt-0 text-right md:text-right text-left">
+                    <div className="flex flex-col md:items-end items-start">
                         <span className="text-neutral-500 text-[10px] uppercase tracking-widest font-bold mb-1">Latest Security Audit</span>
                         <div className="text-xl font-mono font-light text-neutral-300 flex items-center gap-2">
                             <Fingerprint size={16} className="text-amber-500" />

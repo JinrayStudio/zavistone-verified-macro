@@ -4,9 +4,9 @@ import { AreaChart, AlertTriangle, ShieldCheck, LogOut, Settings, Instagram, You
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="min-h-screen bg-neutral-950 text-neutral-50 flex">
+        <div className="min-h-screen bg-neutral-950 text-neutral-50 flex flex-col md:flex-row pb-16 md:pb-0">
             {/* Sidebar Navigation */}
-            <aside className="w-64 border-r border-neutral-800 bg-neutral-900/50 backdrop-blur-xl flex flex-col justify-between hidden md:flex">
+            <aside className="w-64 border-r border-neutral-800 bg-neutral-900/50 backdrop-blur-xl flex-col justify-between hidden md:flex">
                 <div>
                     <div className="p-6 border-b border-neutral-800">
                         <h1 className="text-xl font-bold tracking-tighter bg-gradient-to-r from-emerald-400 to-emerald-200 bg-clip-text text-transparent">
@@ -15,18 +15,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 mt-1">Verified Terminal</p>
                     </div>
                     <nav className="p-4 space-y-2">
-                        <Link href="/dashboard" className="flex items-center space-x-3 text-neutral-400 hover:text-emerald-400 hover:bg-neutral-800/50 p-3 rounded-lg transition-all text-sm font-medium">
+                        <a href="/dashboard" className="flex items-center space-x-3 text-neutral-400 hover:text-emerald-400 hover:bg-neutral-800/50 p-3 rounded-lg transition-all text-sm font-medium">
                             <AreaChart size={18} />
                             <span>Daily Intelligence</span>
-                        </Link>
-                        <Link href="/dashboard/audit" className="flex items-center space-x-3 text-neutral-400 hover:text-rose-400 hover:bg-neutral-800/50 p-3 rounded-lg transition-all text-sm font-medium">
+                        </a>
+                        <a href="/dashboard/audit" className="flex items-center space-x-3 text-neutral-400 hover:text-rose-400 hover:bg-neutral-800/50 p-3 rounded-lg transition-all text-sm font-medium">
                             <AlertTriangle size={18} />
                             <span>Red Team Audit Logs</span>
-                        </Link>
-                        <Link href="/dashboard/pro" className="flex items-center space-x-3 text-amber-500 bg-amber-950/20 hover:text-amber-400 hover:bg-amber-950/40 border border-amber-900/30 p-3 rounded-lg transition-all text-sm font-bold shadow-sm">
+                        </a>
+                        <a href="/dashboard/pro" className="flex items-center space-x-3 text-amber-500 bg-amber-950/20 hover:text-amber-400 hover:bg-amber-950/40 border border-amber-900/30 p-3 rounded-lg transition-all text-sm font-bold shadow-sm">
                             <ShieldCheck size={18} />
                             <span>Access Control (Pro)</span>
-                        </Link>
+                        </a>
                     </nav>
                 </div>
                 <div className="p-4 border-t border-neutral-800 flex flex-col gap-4">
@@ -88,10 +88,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <header className="h-16 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur-md sticky top-0 z-10 flex items-center justify-between px-6">
                     <div className="flex items-center space-x-4">
                         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                        <span className="text-sm font-medium text-neutral-300">SECURE LINK ESTABLISHED</span>
+                        <span className="text-sm font-medium text-neutral-300 truncate">SECURE LINK ESTABLISHED</span>
                     </div>
                     <div className="text-xs text-neutral-500 font-mono tracking-widest hidden sm:block">
                         ZAVISTONE-NODE-01 | UTC
+                    </div>
+                    {/* Mobile Only: Top Right ZAVISTONE */}
+                    <div className="text-xs font-bold tracking-tighter bg-gradient-to-r from-emerald-400 to-emerald-200 bg-clip-text text-transparent md:hidden">
+                        ZAVISTONE.
                     </div>
                 </header>
 
@@ -99,6 +103,22 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     {children}
                 </main>
             </div>
+
+            {/* Mobile Bottom Navigation */}
+            <nav className="fixed bottom-0 left-0 right-0 border-t border-neutral-800 bg-neutral-900/95 backdrop-blur-xl z-50 md:hidden flex items-center justify-around p-3 pb-safe">
+                <a href="/dashboard" className="flex flex-col items-center p-2 text-neutral-400 hover:text-emerald-400 transition-colors">
+                    <AreaChart size={20} className="mb-1" />
+                    <span className="text-[10px] font-medium">Daily</span>
+                </a>
+                <a href="/dashboard/audit" className="flex flex-col items-center p-2 text-neutral-400 hover:text-rose-400 transition-colors">
+                    <AlertTriangle size={20} className="mb-1" />
+                    <span className="text-[10px] font-medium">Audit</span>
+                </a>
+                <a href="/dashboard/pro" className="flex flex-col items-center p-2 text-amber-500 hover:text-amber-400 transition-colors">
+                    <ShieldCheck size={20} className="mb-1" />
+                    <span className="text-[10px] font-medium shadow-sm">Pro Access</span>
+                </a>
+            </nav>
         </div>
     );
 }
